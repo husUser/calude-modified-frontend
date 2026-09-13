@@ -1,0 +1,63 @@
+.mainDash{
+    height: 100vh;
+}
+
+.equipment_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+  }
+  
+  .equipment_item{
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .equipment_itemstrong {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Wider space for guidelines */
+  .guideline {
+    max-width: 600px;
+    word-wrap: break-word; /* To avoid long words breaking out */
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 767px) {
+    .equipment_item {
+      flex: 1 1 100%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .equipment_item {
+      flex: 1 1 45%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .equipment_item {
+      flex: 1 1 22%;
+    }
+  }
+
+/* AddEquipment.module.css */
+.custom_hr {
+  border: 0;
+  height: 1px;
+  border-top: 1px solid white; /* This ensures visibility */
+  margin: 20px 0;
+  z-index: 1;
+}
+
+
+.listContainer{
+   margin: 120px;
+   background-color:#662249;
+   border-radius: 10px;
+}

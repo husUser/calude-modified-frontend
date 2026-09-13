@@ -1,0 +1,13 @@
+/* Add these styles in your global stylesheet (like App.css or index.css) */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;  /* Ensure that body takes up full height of the page */
+  }
+  
+  #root {
+    min-height: 100vh;  /* Ensure the root div also fills the viewport */
+    display: flex;
+    flex-direction: column;
+  }
+  

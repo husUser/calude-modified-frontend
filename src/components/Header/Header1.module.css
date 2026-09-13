@@ -1,0 +1,89 @@
+/* ====== Navbar container ====== */
+.navbar {
+  background: #556690;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ====== Brand ====== */
+.brand {
+  font-weight: 700;
+  color: #fff !important;
+  font-size: 1.2rem;
+}
+
+/* ====== Toggler button (the outer pill) ====== */
+.navbarToggler {
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  background: transparent !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.4rem;
+  line-height: 1;
+}
+
+.navbarToggler:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: #fff !important;
+}
+
+.navbarToggler:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ====== The actual hamburger icon span ======
+   You MUST render: <span class="navbar-toggler-icon" />
+   (use className="navbar-toggler-icon" in JSX, not a CSS-module class)
+*/
+:global(.navbar-toggler-icon) {
+  display: inline-block;
+  width: 1.5em; /* size of the icon */
+  height: 1.5em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* White bars for dark navbar */
+:global(.navbar-dark .navbar-toggler-icon) {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* (Optional) Darker bars when button is active/expanded */
+:global(.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon) {
+  filter: brightness(0.85);
+}
+
+/* ====== Nav links ====== */
+.link {
+  color: #fff !important;
+  font-weight: 500;
+  margin: 0 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.link:hover {
+  background-color: rgba(255, 99, 99, 0.2);
+  color: #fff !important;
+}
+
+/* ====== Right-side welcome text ====== */
+.welcomeText {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+/* ====== Mobile tweaks ====== */
+@media (max-width: 991.98px) {
+  .link {
+    display: block;
+    text-align: left;
+    margin: 4px 0;
+    padding: 8px 12px;
+  }
+  .welcomeText {
+    margin: 10px 0;
+    text-align: center;
+  }
+}

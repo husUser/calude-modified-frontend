@@ -1,0 +1,391 @@
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+  background: #556690;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  min-height: 64px;
+  z-index: 1030;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+  color: #ffffff !important;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  padding: 0.45rem 0.75rem !important;
+  border-radius: 8px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.brand:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navbarCollapse {
+  align-items: center;
+}
+
+.navLinks {
+  align-items: center;
+  gap: 2px;
+}
+
+.link {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff !important;
+  font-size: 0.91rem;
+  font-weight: 500;
+  padding: 0.55rem 0.7rem !important;
+  margin: 0 1px;
+  border-radius: 7px;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
+}
+
+.link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.10);
+  transform: translateY(-1px);
+}
+
+.link:hover::after {
+  width: 45%;
+}
+
+/* Keyboard accessibility */
+.link:focus-visible,
+.brand:focus-visible,
+.navbarToggler:focus-visible,
+.logoutButton:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   USER SECTION
+   ========================================================= */
+
+.userSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-left: 0.75rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.welcomeText {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.welcomeText strong {
+  font-weight: 650;
+}
+
+/* =========================================================
+   LOGOUT BUTTON
+   ========================================================= */
+
+.logoutButton {
+  border: none !important;
+  border-radius: 7px !important;
+  padding: 0.42rem 0.85rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.logoutButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.18);
+}
+
+.logoutButton:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   HAMBURGER
+   ========================================================= */
+
+.navbarToggler {
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  background: transparent !important;
+  padding: 0.35rem 0.55rem !important;
+  border-radius: 7px;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.navbarToggler:hover {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  border-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.navbarToggler:active {
+  transform: scale(0.96);
+}
+
+.navbarToggler:focus {
+  box-shadow: none !important;
+}
+
+:global(.navbar-toggler-icon) {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+:global(.navbar-dark .navbar-toggler-icon) {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .navbar {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .link {
+    font-size: 0.92rem;
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
+  }
+
+  .brand {
+    margin-right: 0.7rem;
+  }
+}
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+   ========================================================= */
+
+@media (max-width: 1199.98px) and (min-width: 992px) {
+  .navbar {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+
+  .brand {
+    font-size: 1.1rem;
+    margin-right: 0.3rem;
+  }
+
+  .link {
+    font-size: 0.82rem;
+    padding-left: 0.45rem !important;
+    padding-right: 0.45rem !important;
+  }
+
+  .welcomeText {
+    font-size: 0.8rem;
+  }
+
+  .userSection {
+    gap: 0.45rem;
+    margin-left: 0.35rem;
+    padding-left: 0.5rem;
+  }
+
+  .logoutButton {
+    font-size: 0.78rem !important;
+    padding: 0.35rem 0.65rem !important;
+  }
+}
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .navbar {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .brand {
+    font-size: 1.12rem;
+  }
+
+  .navbarCollapse {
+    margin-top: 0.55rem;
+    padding: 0.65rem 0.35rem 0.35rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .navLinks {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .link {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    margin: 2px 0;
+    padding: 0.65rem 0.85rem !important;
+    font-size: 0.92rem;
+    border-radius: 7px;
+  }
+
+  .link::after {
+    display: none;
+  }
+
+  .link:hover {
+    transform: none;
+    background-color: rgba(255, 255, 255, 0.10);
+  }
+
+  .userSection {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    margin: 0.7rem 0 0;
+    padding: 0.8rem 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .welcomeText {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .logoutButton {
+    width: 100%;
+    padding: 0.55rem !important;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+  .navbar {
+    min-height: 58px;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .brand {
+    font-size: 1.02rem;
+    padding-left: 0.45rem !important;
+    padding-right: 0.45rem !important;
+  }
+
+  .navbarToggler {
+    padding: 0.3rem 0.45rem !important;
+  }
+
+  :global(.navbar-toggler-icon) {
+    width: 1.25em;
+    height: 1.25em;
+  }
+
+  .navbarCollapse {
+    margin-top: 0.45rem;
+    padding-top: 0.55rem;
+  }
+
+  .link {
+    font-size: 0.88rem;
+    padding: 0.6rem 0.75rem !important;
+  }
+
+  .welcomeText {
+    font-size: 0.85rem;
+  }
+
+  .logoutButton {
+    font-size: 0.84rem !important;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .brand {
+    font-size: 0.95rem;
+  }
+
+  .link {
+    font-size: 0.84rem;
+  }
+
+  .welcomeText {
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar *,
+  .navbar *::before,
+  .navbar *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
