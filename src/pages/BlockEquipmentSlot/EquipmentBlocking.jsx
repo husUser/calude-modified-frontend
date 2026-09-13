@@ -260,7 +260,9 @@ function EquipmentBlocking() {
           </MDBCol>
         </MDBRow>
         <div className={`${classes.listContainer}`}>
-          <h2 className={`text-center text-decoration-underline m-4 ${classes.listTitle}`}>
+          <h2
+            className={`text-center text-decoration-underline m-4 ${classes.listTitle}`}
+          >
             List of blockings
           </h2>
           {blocking?.length > 0 ? (
@@ -292,7 +294,7 @@ function EquipmentBlocking() {
                   }))}
                   columns={columns}
                   initialState={{ pagination: { paginationModel } }}
-                  pageSizeOptions={[5, 10]}
+                  pageSizeOptions={[5, 10, 100]}
                   checkboxSelection={false}
                   loading={loading}
                   sx={{ border: 2 }}
