@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { LuLampDesk } from "react-icons/lu";
 import { GrTechnology } from "react-icons/gr";
 import { FaKey } from "react-icons/fa";
@@ -6,9 +6,9 @@ import { MdAccessTimeFilled } from "react-icons/md";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
 import { MdEnergySavingsLeaf } from "react-icons/md";
 import { GiSatelliteCommunication } from "react-icons/gi";
-import { IoInformationCircle, IoClose } from "react-icons/io5";
+import { IoInformationCircle } from "react-icons/io5";
 import { LuTrainTrack } from "react-icons/lu";
-import { MdRule, MdOndemandVideo } from "react-icons/md";
+import { MdRule } from "react-icons/md";
 import {
   FaClipboardCheck,
   FaTag,
@@ -18,54 +18,11 @@ import {
   FaBan,
   FaCheckCircle,
   FaTrashAlt,
-  FaPlay,
 } from "react-icons/fa";
 import { MdCalendarToday, MdWarningAmber, MdBlock } from "react-icons/md";
 import "./AboutPage.css";
 
-const tutorialVideos = [
-  {
-    id: "kIEouFpj0yk",
-    title: "Login and Signup Steps",
-  },
-  {
-    id: "HpnewtNN99I",
-    title: "How to Book Equipment and Track Booking Status Including Equipment Information",
-  },
-  {
-    id: "7qV6DK0lGYs",
-    title: "Professor Dashboard",
-  },
-  {
-    id: "UHdl464SvPo",
-    title: "Incharge / Operators Dashboard",
-  },
-  {
-    id: "HGWRDKYquEw",
-    title: "TA Dashboard",
-  },
-];
-
 const About = () => {
-  const [activeVideo, setActiveVideo] = useState(null);
-
-  useEffect(() => {
-    if (!activeVideo) return;
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") setActiveVideo(null);
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [activeVideo]);
-
   return (
     <section className="about-container">
       {/* Enhanced animated heading */}
@@ -94,38 +51,26 @@ const About = () => {
           </p>
         </div>
 
-        {/* How to Use section */}
+        {/* Technology section */}
         <div className="section-wrapper">
           <div className="section-header">
             <div className="icon-wrapper">
-              <MdOndemandVideo color="white" />
+              <GrTechnology color="white" />
             </div>
-            <h2 className="section-title">How to Use</h2>
+            <h2 className="section-title">Technology Stack</h2>
           </div>
-          <div className="video-grid">
-            {tutorialVideos.map((video) => (
-              <button
-                type="button"
-                key={video.id}
-                className="video-card"
-                onClick={() => setActiveVideo(video)}
-                aria-label={`Play tutorial: ${video.title}`}
-              >
-                <div className="video-thumb-wrapper">
-                  <img
-                    className="video-thumb"
-                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
-                    alt={video.title}
-                    loading="lazy"
-                  />
-                  <span className="video-play-overlay">
-                    <FaPlay color="white" />
-                  </span>
-                </div>
-                <span className="video-title">{video.title}</span>
-              </button>
-            ))}
-          </div>
+          <p className="content-text">
+            The front-end of the application is built with{" "}
+            <span className="tech-tag react-tag">React</span>, while the
+            back-end leverages the{" "}
+            <span className="tech-tag express-tag">Express</span> framework.
+            These technologies are trusted by leading companies like{" "}
+            <span className="company-highlight">Facebook</span>,{" "}
+            <span className="company-highlight">Instagram</span>,{" "}
+            <span className="company-highlight">Airbnb</span>, and{" "}
+            <span className="company-highlight">Netflix</span> ensuring
+            performance, scalability, and modern design.
+          </p>
         </div>
 
         {/* Benefits section */}
@@ -299,28 +244,6 @@ const About = () => {
           </ol>
         </div>
 
-        {/* Technology section */}
-        <div className="section-wrapper">
-          <div className="section-header">
-            <div className="icon-wrapper">
-              <GrTechnology color="white" />
-            </div>
-            <h2 className="section-title">Technology Stack</h2>
-          </div>
-          <p className="content-text">
-            The front-end of the application is built with{" "}
-            <span className="tech-tag react-tag">React</span>, while the
-            back-end leverages the{" "}
-            <span className="tech-tag express-tag">Express</span> framework.
-            These technologies are trusted by leading companies like{" "}
-            <span className="company-highlight">Facebook</span>,{" "}
-            <span className="company-highlight">Instagram</span>,{" "}
-            <span className="company-highlight">Airbnb</span>, and{" "}
-            <span className="company-highlight">Netflix</span> ensuring
-            performance, scalability, and modern design.
-          </p>
-        </div>
-
         {/* Quote section */}
         <div className="quote-section">
           <div className="quote-mark">"</div>
@@ -330,39 +253,6 @@ const About = () => {
           <cite className="quote-author"> Leonardo da vinci</cite>
         </div>
       </div>
-
-      {/* Video modal */}
-      {activeVideo && (
-        <div
-          className="video-modal-overlay"
-          onClick={() => setActiveVideo(null)}
-        >
-          <div
-            className="video-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="video-modal-close"
-              onClick={() => setActiveVideo(null)}
-              aria-label="Close video"
-            >
-              <IoClose color="white" />
-            </button>
-            <div className="video-modal-player-wrapper">
-              <iframe
-                className="video-modal-player"
-                src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=1`}
-                title={activeVideo.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <p className="video-modal-title">{activeVideo.title}</p>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
