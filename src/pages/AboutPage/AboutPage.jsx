@@ -44,16 +44,10 @@ const About = () => {
             <h2 className="section-title">Inspiration</h2>
           </div>
           <p className="content-text highlight-first">
-            The inspiration behind this booking app came from the frequent need
-            for students to visit professors to obtain paper signatures before
-            accessing laboratory equipment, as well as the constant calls and
-            requests to equipment operators regarding sample status and other
-            queries. Additionally, the previous Excel-based booking system was
-            vulnerable to accidental or unauthorized modifications. This app
-            streamlines the entire process by simplifying equipment booking,
-            improving communication, and providing better access to information.
-            Ultimately, it helps save time, cost, energy, and effort for
-            students, equipment operators, and professors alike.
+            This app simplifies the booking process, improves equipment
+            availability and communication, and helps ensure fair access for
+            all. Ultimately, the goal is to make the best use of the available
+            analytical equipment while saving time, effort, and resources.
           </p>
         </div>
 
@@ -151,8 +145,8 @@ const About = () => {
               </span>
               <span className="rule-text">
                 When submitting your sample, make sure it is properly labeled
-                with complete information, including your name, sample name,
-                and booking ID.
+                with complete information, including your name, sample name, and
+                booking ID.
               </span>
             </li>
             <li className="rule-item">
@@ -169,9 +163,9 @@ const About = () => {
               </span>
               <span className="rule-text">
                 For instruments that allow only one sample per day, the first
-                row entry will be considered for that day. The same rule
-                applies for two- or three-sample-per-day and other
-                day-specific bookings.
+                row entry will be considered for that day. The same rule applies
+                for two- or three-sample-per-day and other day-specific
+                bookings.
               </span>
             </li>
             <li className="rule-item">
@@ -179,10 +173,10 @@ const About = () => {
                 <MdWarningAmber color="white" />
               </span>
               <span className="rule-text">
-                For paper-related comments or emergency analysis that needs
-                to be completed urgently, please approach the instrument
-                in-charge with a guide-approved email and supporting
-                evidence. Verbal requests will not be entertained.
+                For paper-related comments or emergency analysis that needs to
+                be completed urgently, please approach the instrument in-charge
+                with a guide-approved email and supporting evidence. Verbal
+                requests will not be entertained.
               </span>
             </li>
             <li className="rule-item">
@@ -190,9 +184,9 @@ const About = () => {
                 <MdBlock color="white" />
               </span>
               <span className="rule-text">
-                Depending on holidays, external sample bookings, or
-                maintenance schedules, the slot booking column may be
-                blocked. Please make sure not to book on holidays.
+                Depending on holidays, external sample bookings, or maintenance
+                schedules, the slot booking column may be blocked. Please make
+                sure not to book on holidays.
               </span>
             </li>
             <li className="rule-item">
@@ -200,9 +194,9 @@ const About = () => {
                 <FaHandshake color="white" />
               </span>
               <span className="rule-text">
-                When writing your paper, make sure to properly acknowledge
-                the respective sponsor of the equipment used. Full details
-                are available in the Information section of the website.
+                When writing your paper, make sure to properly acknowledge the
+                respective sponsor of the equipment used. Full details are
+                available in the Information section of the website.
               </span>
             </li>
             <li className="rule-item">
@@ -222,9 +216,9 @@ const About = () => {
               <span className="rule-text">
                 Proxy booking on behalf of students from other labs to share
                 slots is strictly prohibited and will lead to serious
-                punishment. You are only allowed to book equipment for
-                ongoing research work in your own lab; violations may result
-                in punishment up to removal from the portal.
+                punishment. You are only allowed to book equipment for ongoing
+                research work in your own lab; violations may result in
+                punishment up to removal from the portal.
               </span>
             </li>
             <li className="rule-item">
@@ -232,10 +226,9 @@ const About = () => {
                 <FaCheckCircle color="white" />
               </span>
               <span className="rule-text">
-                You can track your analysis completion status from your
-                booking history table, and you should close the status
-                ("Complete Booking") after receiving your sample and
-                analysis data.
+                You can track your analysis completion status from your booking
+                history table, and you should close the status ("Complete
+                Booking") after receiving your sample and analysis data.
               </span>
             </li>
             <li className="rule-item">
@@ -243,9 +236,9 @@ const About = () => {
                 <FaTrashAlt color="white" />
               </span>
               <span className="rule-text">
-                Data cleaning and sample disposal may be carried out
-                depending on conditions, so make sure to collect your
-                results and samples on time.
+                Data cleaning and sample disposal may be carried out depending
+                on conditions, so make sure to collect your results and samples
+                on time.
               </span>
             </li>
           </ol>
