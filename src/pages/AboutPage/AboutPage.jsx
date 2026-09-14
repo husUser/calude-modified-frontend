@@ -30,7 +30,8 @@ const tutorialVideos = [
   },
   {
     id: "HpnewtNN99I",
-    title: "How to Book Equipment and Track Booking Status Including Equipment Information",
+    title:
+      "How to Book Equipment and Track Booking Status Including Equipment Information",
   },
   {
     id: "7qV6DK0lGYs",
@@ -43,6 +44,10 @@ const tutorialVideos = [
   {
     id: "HGWRDKYquEw",
     title: "TA Dashboard",
+  },
+  {
+    id: "TESzYCB1-MY",
+    title: "Admin Dashboard",
   },
 ];
 
@@ -103,7 +108,7 @@ const About = () => {
             <h2 className="section-title">How to Use</h2>
           </div>
           <div className="video-grid">
-            {tutorialVideos.map((video) => (
+            {tutorialVideos?.map((video) => (
               <button
                 type="button"
                 key={video.id}

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Acknowledgment.css";
+import { BiSolidLike } from "react-icons/bi";
 
 const Acknowledgement = () => {
   return (
@@ -17,7 +18,9 @@ const Acknowledgement = () => {
         {/* Appreciation Section */}
         <div className="section-wrapper">
           <div className="section-header">
-            <div className="icon-wrapper">🙏</div>
+            <div className="icon-wrapper">
+              <BiSolidLike />
+            </div>
             <h2 className="section-title">Expression of Gratitude</h2>
           </div>
           <p
