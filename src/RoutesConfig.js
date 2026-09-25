@@ -118,7 +118,7 @@ const RoutesConfig = () => {
         <Route
           path="/dashboard"
           element={
-            <Layout>
+            <Layout showFooter={false}>
               <DashBoard />
             </Layout>
           }

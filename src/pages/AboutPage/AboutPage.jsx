@@ -211,6 +211,17 @@ const About = () => {
             </li>
             <li className="rule-item">
               <span className="rule-icon">
+                <FaTag color="white" />
+              </span>
+              <span className="rule-text">
+                After receiving confirmation from your professor (guide), you do
+                not need to submit an analysis request form signed by your guide
+                to the machine in-charge or caretaker. Guides can grant access
+                digitally through the professor portal.
+              </span>
+            </li>
+            <li className="rule-item">
+              <span className="rule-icon">
                 <MdCalendarToday color="white" />
               </span>
               <span className="rule-text">

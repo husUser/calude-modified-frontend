@@ -44,14 +44,6 @@ export default function Information() {
   const [equipments, setEquipments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [expandedGuidelines, setExpandedGuidelines] = useState({});
-
-  const toggleGuidelinesExpand = (equipmentId) => {
-    setExpandedGuidelines((prev) => ({
-      ...prev,
-      [equipmentId]: !prev[equipmentId],
-    }));
-  };
 
   const getEquipmentList = async () => {
     try {
@@ -264,31 +256,7 @@ export default function Information() {
                         minHeight: "40px",
                       }}
                     >
-                      {expandedGuidelines[equipment.equipmentId]
-                        ? equipment.guidelines || "No guidelines provided"
-                        : truncateText(equipment.guidelines, 120)}
-                      {equipment.guidelines &&
-                        equipment.guidelines.length > 120 && (
-                          <Typography
-                            component="span"
-                            variant="body2"
-                            onClick={() =>
-                              toggleGuidelinesExpand(equipment.equipmentId)
-                            }
-                            sx={{
-                              color: "#667eea",
-                              cursor: "pointer",
-                              fontWeight: 600,
-                              ml: 1,
-                              display: "inline-block",
-                              "&:hover": { textDecoration: "underline" },
-                            }}
-                          >
-                            {expandedGuidelines[equipment.equipmentId]
-                              ? "Show less"
-                              : "Show full text"}
-                          </Typography>
-                        )}
+                      {truncateText(equipment.guidelines, 120)}
                     </Typography>
 
                     {/* Operator Info Section */}
@@ -395,30 +363,35 @@ export default function Information() {
                             />
                             <Typography
                               variant="body2"
-                              component="a"
-                              href="https://iitr.ac.in/Departments/Chemical%20Engineering%20Department/People/Staff/STAFF.html"
-                              target="_blank"
-                              rel="noopener noreferrer"
                               sx={{
-                                color: "#f59e0b",
-                                cursor: "pointer",
-                                textDecoration: "none",
-                                "&:hover": { textDecoration: "underline" },
+                                color: equipment.operatorPhoneNumber
+                                  ? "#f59e0b"
+                                  : "text.secondary",
+                                cursor: equipment.operatorPhoneNumber
+                                  ? "pointer"
+                                  : "default",
                               }}
+                              onClick={() =>
+                                handlePhoneClick(equipment.operatorPhoneNumber)
+                              }
                             >
-                              Show phone number
+                              {equipment.operatorPhoneNumber || "N/A"}
                             </Typography>
                           </Box>
-                          <IconButton
-                            size="small"
-                            component="a"
-                            href="https://iitr.ac.in/Departments/Chemical%20Engineering%20Department/People/Staff/STAFF.html"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            sx={{ color: "#f59e0b" }}
-                          >
-                            <PhoneIcon fontSize="small" />
-                          </IconButton>
+                          {equipment.operatorPhoneNumber &&
+                            equipment.operatorPhoneNumber !== "N/A" && (
+                              <IconButton
+                                size="small"
+                                onClick={() =>
+                                  handlePhoneClick(
+                                    equipment.operatorPhoneNumber,
+                                  )
+                                }
+                                sx={{ color: "#f59e0b" }}
+                              >
+                                <PhoneIcon fontSize="small" />
+                              </IconButton>
+                            )}
                         </Box>
                       </Stack>
                     </Box>
