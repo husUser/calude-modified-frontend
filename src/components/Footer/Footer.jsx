@@ -20,7 +20,7 @@ export default function Footer() {
           {/* <span>contact for code base : <a href="https://drive.google.com/drive/folders/1o2yOTF2EpqUBj0jN-N3stXyyKEjXMMMH?usp=sharing">click here</a></span> */}
           <span className="text-white">
             {" "}
-            For code base request :{" "}
+            contactUs :{" "}
             <Link className="text-white" to="/contactForCode">
               click here
             </Link>
