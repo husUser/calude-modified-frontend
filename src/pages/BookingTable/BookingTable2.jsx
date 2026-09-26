@@ -181,7 +181,8 @@ function BookingTable() {
     const currentMinutes = nowIST.hours * 60 + nowIST.minutes;
 
     return (
-      dayDate.getTime() === todayStart.getTime() && currentMinutes >= endMinutes
+      dayDate.getTime() === todayStart.getTime() &&
+      currentMinutes >= endMinutes
     );
   };
 
@@ -254,21 +255,7 @@ function BookingTable() {
     const isoDate = toIsoKey(dayDate);
     const cellKey = `${time}-${isoDate}`;
 
-    if (bookedSlots[cellKey]) return;
-
-    if (bookedCells[cellKey]) {
-      // Already selected -> clicking again unselects it
-      setBookedCells((prev) => {
-        const next = { ...prev };
-        delete next[cellKey];
-        return next;
-      });
-
-      setBookings((prev) =>
-        prev.filter((b) => !(b.timeSlot === time && b.slotDate === isoDate)),
-      );
-      return;
-    }
+    if (bookedCells[cellKey] || bookedSlots[cellKey]) return;
 
     setBookedCells((prev) => ({
       ...prev,
@@ -413,170 +400,169 @@ function BookingTable() {
       <Header />
       <div className="container">
         <div className="tableScroll">
-          <table {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>
-                      {column.render("Header")}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()}>
+                    {column.render("Header")}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
 
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row);
-                return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map((cell, cellIndex) => {
-                      const time = row.values.Time;
-                      const dayIndex = cellIndex - 1;
-                      const isTimeColumn = cell.column.id === "Time";
-                      const dayDate = daysOfWeek[dayIndex];
-                      const isoDate = dayDate ? toIsoKey(dayDate) : null;
-                      const cellKey = isoDate
-                        ? `${time}-${isoDate}`
-                        : `col-${cellIndex}-${time}`;
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell, cellIndex) => {
+                    const time = row.values.Time;
+                    const dayIndex = cellIndex - 1;
+                    const isTimeColumn = cell.column.id === "Time";
+                    const dayDate = daysOfWeek[dayIndex];
+                    const isoDate = dayDate ? toIsoKey(dayDate) : null;
+                    const cellKey = isoDate
+                      ? `${time}-${isoDate}`
+                      : `col-${cellIndex}-${time}`;
 
-                      // Check booked (from server) and local selected booked
-                      const serverBookingStatus = isoDate
-                        ? bookedSlots[cellKey]
-                        : undefined;
-                      const isServerBooked = !!serverBookingStatus;
-                      const isLocallySelected = !!bookedCells[cellKey];
+                    // Check booked (from server) and local selected booked
+                    const serverBookingStatus = isoDate
+                      ? bookedSlots[cellKey]
+                      : undefined;
+                    const isServerBooked = !!serverBookingStatus;
+                    const isLocallySelected = !!bookedCells[cellKey];
 
-                      // Determine if the day is blocked by blockingData
-                      let isBlockedByBlocking = false;
-                      let blockingMessage = null;
-                      if (Array.isArray(blockingData) && dayDate) {
-                        // try to find a blocking record that matches the day (supporting expected schema)
-                        const currentYear = dayDate.getFullYear();
-                        const matched = blockingData.find((block) => {
-                          // if backend provides blockingDate or a composite blockingMonth & blockingNumber
-                          if (block.blockingDate) {
-                            const bdDate =
-                              parseSlotDateToDate(block.blockingDate) ||
-                              new Date(block.blockingDate);
-                            if (!Number.isNaN(bdDate.getTime())) {
-                              bdDate.setHours(0, 0, 0, 0);
-                              return toIsoKey(bdDate) === isoDate;
-                            }
+                    // Determine if the day is blocked by blockingData
+                    let isBlockedByBlocking = false;
+                    let blockingMessage = null;
+                    if (Array.isArray(blockingData) && dayDate) {
+                      // try to find a blocking record that matches the day (supporting expected schema)
+                      const currentYear = dayDate.getFullYear();
+                      const matched = blockingData.find((block) => {
+                        // if backend provides blockingDate or a composite blockingMonth & blockingNumber
+                        if (block.blockingDate) {
+                          const bdDate =
+                            parseSlotDateToDate(block.blockingDate) ||
+                            new Date(block.blockingDate);
+                          if (!Number.isNaN(bdDate.getTime())) {
+                            bdDate.setHours(0, 0, 0, 0);
+                            return toIsoKey(bdDate) === isoDate;
                           }
-                          if (block.blockingMonth && block.blockingNumber) {
-                            const blockedDateString = `${block.blockingNumber} ${block.blockingMonth} ${currentYear}`;
-                            const bd = new Date(blockedDateString);
-                            if (!Number.isNaN(bd.getTime())) {
-                              bd.setHours(0, 0, 0, 0);
-                              return toIsoKey(bd) === isoDate;
-                            }
-                          }
-                          return false;
-                        });
-
-                        if (matched) {
-                          isBlockedByBlocking = true;
-                          blockingMessage =
-                            matched.blockingMessage || "Blocked";
                         }
+                        if (block.blockingMonth && block.blockingNumber) {
+                          const blockedDateString = `${block.blockingNumber} ${block.blockingMonth} ${currentYear}`;
+                          const bd = new Date(blockedDateString);
+                          if (!Number.isNaN(bd.getTime())) {
+                            bd.setHours(0, 0, 0, 0);
+                            return toIsoKey(bd) === isoDate;
+                          }
+                        }
+                        return false;
+                      });
+
+                      if (matched) {
+                        isBlockedByBlocking = true;
+                        blockingMessage = matched.blockingMessage || "Blocked";
                       }
+                    }
 
-                      // Build cell style & text
-                      let cellStyle = {};
-                      let cellText = cell.value;
+                    // Build cell style & text
+                    let cellStyle = {};
+                    let cellText = cell.value;
 
-                      if (isTimeColumn) {
+                    if (isTimeColumn) {
+                      cellStyle = {
+                        backgroundColor: "#0A7075",
+                        color: "white",
+                      };
+                    } else if (dayDate) {
+                      const dayOfWeek = dayDate.getDay();
+
+                      // weekend -> Holiday
+                      if (dayOfWeek === 6 || dayOfWeek === 0) {
                         cellStyle = {
-                          backgroundColor: "#0A7075",
+                          backgroundColor: "#54162B",
                           color: "white",
+                          cursor: "not-allowed",
                         };
-                      } else if (dayDate) {
-                        const dayOfWeek = dayDate.getDay();
-
-                        // weekend -> Holiday
-                        if (dayOfWeek === 6 || dayOfWeek === 0) {
-                          cellStyle = {
-                            backgroundColor: "#54162B",
-                            color: "white",
-                            cursor: "not-allowed",
-                          };
-                          cellText = "Holiday";
-                        }
-                        // blocking days (manual block)
-                        else if (isBlockedByBlocking) {
-                          cellStyle = {
-                            backgroundColor: "lightcoral",
-                            color: "white",
-                            cursor: "not-allowed",
-                          };
-                          cellText = blockingMessage || "Blocked";
-                        }
-                        // past time slots
-                        else if (
-                          isPastTimeSlot(time, dayDate) &&
-                          !isServerBooked &&
-                          !isLocallySelected
-                        ) {
-                          cellStyle = {
-                            backgroundColor: "black",
-                            color: "white",
-                            cursor: "not-allowed",
-                          };
-                          cellText = "Closed without booking";
-                        }
-                        // server-booked slots (already booked in DB) -> show Booked
-                        else if (isServerBooked) {
-                          cellStyle = {
-                            backgroundColor: "lightcoral",
-                            color: "white",
-                            cursor: "not-allowed",
-                          };
-                          cellText = serverBookingStatus || "Booked";
-                        }
-                        // locally selected (user clicked but not yet submitted)
-                        else if (isLocallySelected) {
-                          cellStyle = {
-                            backgroundColor: "#6aa2d6",
-                            color: "white",
-                            cursor: "pointer",
-                          }; // highlight selection
-                          cellText = "Selected";
-                        } else {
-                          // default available "Book"
-                          cellStyle = {};
-                          cellText = "Book";
-                        }
+                        cellText = "Holiday";
                       }
-
-                      const clickable =
-                        !isTimeColumn &&
+                      // blocking days (manual block)
+                      else if (isBlockedByBlocking) {
+                        cellStyle = {
+                          backgroundColor: "lightcoral",
+                          color: "white",
+                          cursor: "not-allowed",
+                        };
+                        cellText = blockingMessage || "Blocked";
+                      }
+                      // past time slots
+                      else if (
+                        isPastTimeSlot(time, dayDate) &&
                         !isServerBooked &&
-                        !isBlockedByBlocking &&
-                        cellText !== "Holiday" &&
-                        cellText !== "Closed without booking";
+                        !isLocallySelected
+                      ) {
+                        cellStyle = {
+                          backgroundColor: "black",
+                          color: "white",
+                          cursor: "not-allowed",
+                        };
+                        cellText = "Closed without booking";
+                      }
+                      // server-booked slots (already booked in DB) -> show Booked
+                      else if (isServerBooked) {
+                        cellStyle = {
+                          backgroundColor: "lightcoral",
+                          color: "white",
+                          cursor: "not-allowed",
+                        };
+                        cellText = serverBookingStatus || "Booked";
+                      }
+                      // locally selected (user clicked but not yet submitted)
+                      else if (isLocallySelected) {
+                        cellStyle = {
+                          backgroundColor: "#6aa2d6",
+                          color: "white",
+                          cursor: "pointer",
+                        }; // highlight selection
+                        cellText = "Selected";
+                      } else {
+                        // default available "Book"
+                        cellStyle = {};
+                        cellText = "Book";
+                      }
+                    }
 
-                      return (
-                        <td
-                          {...cell.getCellProps()}
-                          key={cellKey}
-                          style={cellStyle}
-                          onClick={() => {
-                            if (!isTimeColumn && clickable) {
-                              handleCellClick(time, dayIndex);
-                            }
-                          }}
-                        >
-                          {cellText}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                    const clickable =
+                      !isTimeColumn &&
+                      !isServerBooked &&
+                      !isBlockedByBlocking &&
+                      cellText !== "Holiday" &&
+                      cellText !== "Closed without booking";
+
+                    return (
+                      <td
+                        {...cell.getCellProps()}
+                        key={cellKey}
+                        style={cellStyle}
+                        onClick={() => {
+                          if (!isTimeColumn && clickable) {
+                            handleCellClick(time, dayIndex);
+                          }
+                        }}
+                      >
+                        {cellText}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
         </div>
 
         <MDBBtn className="m-2" color="success" onClick={handleSubmit}>
