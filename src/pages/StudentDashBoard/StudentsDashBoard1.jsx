@@ -5,10 +5,6 @@ import { axiosInstance } from "../../Utility/urlInstance";
 import { useParams } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import Button from "@mui/material/Button"; // Importing MUI Button
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 
 function StudentsDashBoard() {
   const [bookingHistory, setBookingHistory] = useState([]);
@@ -16,8 +12,6 @@ function StudentsDashBoard() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [disabledBookingIds, setDisabledBookingIds] = useState([]); // Track which bookings are completed
-  const [cancelTarget, setCancelTarget] = useState(null); // { resultId } of the booking pending cancellation
-  const [cancelling, setCancelling] = useState(false);
   const auth = useAuthUser();
   const userId = auth.userId;
 
@@ -72,43 +66,12 @@ function StudentsDashBoard() {
     }
   };
 
-  // Open the confirmation modal for a specific booking
-  const handleCancelBookingClick = (resultId) => {
-    setCancelTarget(resultId);
-  };
-
-  const handleCancelModalClose = () => {
-    if (cancelling) return;
-    setCancelTarget(null);
-  };
-
-  // Only runs after the user confirms in the modal
-  const handleConfirmCancelBooking = async () => {
-    if (!cancelTarget) return;
-    setCancelling(true);
-    try {
-      const result = await axiosInstance.delete(
-        `/result/cancelBookingByStudent/${userId}/${cancelTarget}`,
-      );
-
-      if (result.status === 200) {
-        setCancelTarget(null);
-        getUserBookings(); // Refresh so the cancelled booking disappears
-      }
-    } catch (error) {
-      setError("Error cancelling booking");
-      console.log(error);
-    } finally {
-      setCancelling(false);
-    }
-  };
-
   const columns = [
     { field: "EquipmentName", headerName: "Equipment name", width: 190 },
-    { field: "bookedDate", headerName: "Date of booking", width: 120 },
-    { field: "slotDate", headerName: "Slot Date", width: 120 },
-    { field: "slotTime", headerName: "Slot Time", width: 120 },
-    { field: "displayBookingId", headerName: "Booking ID", width: 100 },
+    { field: "bookedDate", headerName: "Date of booking", width: 180 },
+    { field: "slotDate", headerName: "Slot Date", width: 180 },
+    { field: "slotTime", headerName: "Slot Time", width: 180 },
+    { field: "displayBookingId", headerName: "Booking ID", width: 180 },
     {
       field: "operatorStatusConfirmation",
       headerName: "Operator Status Confirmation",
@@ -122,7 +85,7 @@ function StudentsDashBoard() {
     {
       field: "studentStatus",
       headerName: "Complete Booking",
-      width: 210,
+      width: 180,
       renderCell: (params) => {
         const isCompleted =
           params.row.studentConfirmation === "Results collected";
@@ -130,30 +93,14 @@ function StudentsDashBoard() {
           disabledBookingIds.includes(params.row.id) || isCompleted;
 
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "6px",
-              padding: "6px 0",
-            }}
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={isDisabled}
+            onClick={() => handleCompleteBooking(params.row.resultId, userId)}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={isDisabled}
-              onClick={() => handleCompleteBooking(params.row.resultId, userId)}
-            >
-              {isCompleted ? "Completed" : "Complete Booking"}
-            </Button>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={() => handleCancelBookingClick(params.row.resultId)}
-            >
-              Cancel/Delete Booking
-            </Button>
-          </div>
+            {isCompleted ? "Completed" : "Complete Booking"}
+          </Button>
         );
       },
     },
@@ -162,7 +109,7 @@ function StudentsDashBoard() {
   return (
     <div>
       <h1 className="text-center mt-3 text-white">Student Booking History</h1>
-      <Paper sx={{ height: "90%", width: "90%", margin: "2% auto" }}>
+      <Paper sx={{ height: "90%", width: "80%", margin: "2% auto" }}>
         {message && (
           <div
             style={{ color: "red", fontWeight: "bold", marginBottom: "10px" }}
@@ -195,31 +142,9 @@ function StudentsDashBoard() {
           pageSize={10}
           rowsPerPageOptions={[5, 10]}
           loading={loading}
-          rowHeight={100}
           sx={{ border: 2 }}
         />
       </Paper>
-
-      <Dialog open={!!cancelTarget} onClose={handleCancelModalClose}>
-        <DialogTitle>Are you sure?</DialogTitle>
-        <DialogContent>
-          This will permanently cancel the active booking and delete this single
-          booking from your booking history. This action cannot be undone.
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancelModalClose} disabled={cancelling}>
-            Cancel
-          </Button>
-          <Button
-            onClick={handleConfirmCancelBooking}
-            variant="contained"
-            color="error"
-            disabled={cancelling}
-          >
-            {cancelling ? "Cancelling..." : "Yes"}
-          </Button>
-        </DialogActions>
-      </Dialog>
     </div>
   );
 }

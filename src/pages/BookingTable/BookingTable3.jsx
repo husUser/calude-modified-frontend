@@ -7,12 +7,10 @@ import { useLocation } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import Header from "../../components/Header/Header";
 import { toast } from "react-toastify";
-import Tooltip from "@mui/material/Tooltip";
 
 function BookingTable() {
   // Maps keyed by `${time}-${yyyy-mm-dd}` -> status text (e.g. "Booked")
   const [bookedSlots, setBookedSlots] = useState({});
-  const [bookedDetails, setBookedDetails] = useState({});
   const [bookedCells, setBookedCells] = useState({});
   const [bookings, setBookings] = useState([]);
   const [blockingData, setBlockingData] = useState([]);
@@ -200,7 +198,6 @@ function BookingTable() {
 
       // bookingsFromServer expected to be array of objects with slotDate & slotTime & bookingStatus
       const slotsMap = {};
-      const detailsMap = {};
 
       bookingsFromServer.forEach((b) => {
         const { slotDate, slotTime, bookingStatus } = b;
@@ -214,21 +211,12 @@ function BookingTable() {
             ? bookingStatus // if backend already sends 'Booked' or similar
             : "Booked";
         slotsMap[key] = statusText || "Booked";
-
-        // Tooltip details for this booked cell (booking person + booking ID)
-        detailsMap[key] = {
-          firstName: b?.User?.firstName || "",
-          lastName: b?.User?.lastName || "",
-          displayBookingId: b?.displayBookingId || b?.bookingId || "",
-        };
       });
 
       setBookedSlots(slotsMap);
-      setBookedDetails(detailsMap);
     } catch (error) {
       console.error("Error fetching booking status:", error);
       setBookedSlots({});
-      setBookedDetails({});
     }
   };
 
@@ -569,7 +557,7 @@ function BookingTable() {
                         cellText !== "Holiday" &&
                         cellText !== "Closed without booking";
 
-                      const tdElement = (
+                      return (
                         <td
                           {...cell.getCellProps()}
                           key={cellKey}
@@ -583,43 +571,6 @@ function BookingTable() {
                           {cellText}
                         </td>
                       );
-
-                      // Only booked cells get a tooltip; every other cell
-                      // state (Holiday/Blocked/Closed/Selected/Book) is
-                      // returned completely unchanged, unwrapped.
-                      if (isServerBooked) {
-                        const details = bookedDetails[cellKey];
-                        const fullName = details
-                          ? `${details.firstName} ${details.lastName}`.trim()
-                          : "";
-                        const tooltipTitle = (
-                          <>
-                            {fullName && <div>{fullName}</div>}
-                            {details?.displayBookingId && (
-                              <div>Booking ID: {details.displayBookingId}</div>
-                            )}
-                            {!fullName && !details?.displayBookingId && (
-                              <div>Booked</div>
-                            )}
-                          </>
-                        );
-
-                        return (
-                          <Tooltip
-                            key={cellKey}
-                            title={tooltipTitle}
-                            arrow
-                            placement="top"
-                            enterDelay={100}
-                            leaveDelay={0}
-                            disableInteractive
-                          >
-                            {tdElement}
-                          </Tooltip>
-                        );
-                      }
-
-                      return tdElement;
                     })}
                   </tr>
                 );
