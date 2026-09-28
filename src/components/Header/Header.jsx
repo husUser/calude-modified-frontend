@@ -72,6 +72,7 @@ function DashboardHeader() {
     { to: "/ack", label: "Acknowledgement" },
     { to: "/about", label: "About" },
     { to: "/information", label: "Information" },
+    { to: "/contactForCode", label: "ContactUs" },
   ];
 
   return (
