@@ -225,7 +225,7 @@ const About = () => {
                 <MdCalendarToday color="white" />
               </span>
               <span className="rule-text">
-                Slot booking opens every Wednesday at 8:30 AM.
+                Slot booking opens every alternate Wednesday at 8:30 AM.
               </span>
             </li>
             <li className="rule-item">
@@ -236,7 +236,8 @@ const About = () => {
                 For instruments that allow only one sample per day, the first
                 row entry will be considered for that day. The same rule applies
                 for two- or three-sample-per-day and other day-specific
-                bookings.
+                bookings. For more information, you can contact the respective
+                operator/caretaker of the machine
               </span>
             </li>
             <li className="rule-item">
@@ -258,6 +259,15 @@ const About = () => {
                 Depending on holidays, external sample bookings, or maintenance
                 schedules, the slot booking column may be blocked. Please make
                 sure not to book on holidays.
+              </span>
+            </li>
+            <li className="rule-item">
+              <span className="rule-icon">
+                <MdBlock color="white" />
+              </span>
+              <span className="rule-text">
+                Depending on the booking schedule, every alternate Friday may be
+                reserved for external users.
               </span>
             </li>
             <li className="rule-item">
