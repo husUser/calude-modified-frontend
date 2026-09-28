@@ -205,7 +205,7 @@ function LogInSignUp() {
                   </div>
                   <div className="forgot mt-2">
                     <Link to="/ProfessorLogin">
-                      Click Here For Professor's LogIn
+                      Click Here For Guide's LogIn
                     </Link>
                   </div>
                 </form>

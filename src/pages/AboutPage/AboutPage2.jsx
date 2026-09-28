@@ -33,7 +33,7 @@ const About = () => {
           </div>
           <p className="content-text highlight-first">
             The inspiration behind this booking app came from the frequent need
-            for students to visit professors to obtain paper signatures before
+            for students to visit guides to obtain paper signatures before
             accessing laboratory equipment, as well as the constant calls and
             requests to equipment operators regarding sample status and other
             queries. Additionally, the previous Excel-based booking system was
@@ -41,7 +41,7 @@ const About = () => {
             streamlines the entire process by simplifying equipment booking,
             improving communication, and providing better access to information.
             Ultimately, it helps save time, cost, energy, and effort for
-            students, equipment operators, and professors alike.
+            students, equipment operators, and guides alike.
           </p>
         </div>
 

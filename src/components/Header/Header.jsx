@@ -40,7 +40,7 @@ function DashboardHeader() {
     3: [
       { to: "/dashboard", label: "Home" },
       { to: "/addEquipments", label: "Add Equipment" },
-      { to: "/addProfessors", label: "Add Professor" },
+      { to: "/addProfessors", label: "Add Guide" },
       { to: "/ListOfAllUsers", label: "All Users" },
       { to: "/userRoleUpdate", label: "Privilege" },
       // { to: "/deleteOldData", label: "Clean Old Data" },
@@ -52,7 +52,7 @@ function DashboardHeader() {
     4: [
       { to: "/dashboard", label: "Home" },
       { to: "/addEquipments", label: "Add Equipment" },
-      { to: "/addProfessors", label: "Add Professor" },
+      { to: "/addProfessors", label: "Add Guide" },
       { to: "/ListOfAllUsers", label: "All Users" },
       { to: "/userRoleUpdate", label: "Privilege" },
       // { to: "/deleteOldData", label: "Clean Old Data" },
@@ -62,7 +62,7 @@ function DashboardHeader() {
       // { to: "/information", label: "Information" },
     ],
     5: [
-      { to: "/ProfessorDashboard", label: "Professor Dashboard" },
+      { to: "/ProfessorDashboard", label: "Guide Dashboard" },
       // { to: "/information", label: "Information" },
     ],
   };

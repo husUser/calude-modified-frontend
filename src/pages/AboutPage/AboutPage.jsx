@@ -35,7 +35,7 @@ const tutorialVideos = [
   },
   {
     id: "7qV6DK0lGYs",
-    title: "Professor Dashboard",
+    title: "Guide Dashboard",
   },
   {
     id: "UHdl464SvPo",
@@ -214,10 +214,10 @@ const About = () => {
                 <FaTag color="white" />
               </span>
               <span className="rule-text">
-                After receiving confirmation from your professor (guide), you do
-                not need to submit an analysis request form signed by your guide
-                to the machine in-charge or caretaker. Guides can grant access
-                digitally through the professor portal.
+                After receiving confirmation from your guide, you do not need to
+                submit an analysis request form signed by your guide to the
+                machine in-charge or caretaker. Guides can grant access
+                digitally through the guide's portal.
               </span>
             </li>
             <li className="rule-item">

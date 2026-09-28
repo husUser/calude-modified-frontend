@@ -33,22 +33,22 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-  
+
 //     // Clear previous messages before making a new request
 //     setHandleError("");
 //     setHandleSuccess("");
-  
+
 //     if (!selectedUser || !selectedRole) {
 //       setHandleError("Please select both a user and a role.");
 //       return;
 //     }
-  
+
 //     setLoading(true);
 //     try {
 //       await axiosInstance.patch(`/user/userRole/${selectedUser}`, {
 //         role: selectedRole,
 //       });
-  
+
 //       setHandleSuccess("User role updated successfully.");
 //     } catch (error) {
 //       setHandleError(
@@ -58,7 +58,7 @@
 //       setLoading(false);
 //     }
 //   };
-  
+
 //   return (
 //     <MDBContainer fluid className="p-4 container">
 //       <MDBRow>
@@ -139,8 +139,8 @@ import {
   MDBCardBody,
 } from "mdb-react-ui-kit";
 import { BeatLoader } from "react-spinners";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import styles
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import styles
 
 function UserRoleUpdater() {
   const [loading, setLoading] = useState(false);
@@ -163,31 +163,31 @@ function UserRoleUpdater() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Clear previous toasts before making a new request
     toast.dismiss();
-  
+
     if (!selectedUser || !selectedRole) {
       toast.error("Please select both a user and a role.");
       return;
     }
-  
+
     setLoading(true);
     try {
       await axiosInstance.patch(`/user/userRole/${selectedUser}`, {
         role: selectedRole,
       });
-  
+
       toast.success("User role updated successfully.");
     } catch (error) {
       toast.error(
-        error.response?.data?.errors?.[0] || "Failed to update role."
+        error.response?.data?.errors?.[0] || "Failed to update role.",
       );
     } finally {
       setLoading(false);
     }
   };
-  
+
   return (
     <MDBContainer fluid className="p-4 container">
       <MDBRow>
@@ -237,11 +237,20 @@ function UserRoleUpdater() {
                   <option value="1">Operator</option>
                   <option value="2">TA</option>
                   <option value="3">Admin</option>
-                  <option value="5">Professor</option>
+                  <option value="5">Guide</option>
                 </select>
 
-                <MDBBtn className="w-100 mb-4" size="md" type="submit" disabled={loading}>
-                  {loading ? <BeatLoader size={8} color="#ffffff" /> : "Update Role"}
+                <MDBBtn
+                  className="w-100 mb-4"
+                  size="md"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <BeatLoader size={8} color="#ffffff" />
+                  ) : (
+                    "Update Role"
+                  )}
                 </MDBBtn>
               </form>
             </MDBCardBody>

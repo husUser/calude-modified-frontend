@@ -102,7 +102,7 @@ function LogInSignUp() {
           className="text-center text-md-start d-flex flex-column justify-content-center"
         >
           <h1 className="my-5 display-3 fw-bold ls-tight px-3 text-white">
-            Welcome to Professor's <br />
+            Welcome to Guide's <br />
             <span className="text-warning">Portal</span>
           </h1>
           <h5 className="px-3 text-white text-justify">
