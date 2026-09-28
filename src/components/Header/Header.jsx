@@ -17,6 +17,13 @@ function DashboardHeader() {
     navigate("/login");
   };
 
+  // 0 user (default)
+  // 1 lab technician  (operator)
+  // 2  TA
+  // 3  admin
+  // 4  super-admin
+  // 5   professor
+
   const navLinks = {
     0: [
       { to: "/dashboard", label: "Home" },
@@ -48,6 +55,7 @@ function DashboardHeader() {
       { to: "/EquipStatusUpdate", label: "Alter Equipment Status" },
       { to: "/notification", label: "Notification" },
       // { to: "/information", label: "Information" },
+      { to: "/myBookings", label: "My Booking" },
     ],
     4: [
       { to: "/dashboard", label: "Home" },
@@ -60,6 +68,7 @@ function DashboardHeader() {
       { to: "/EquipStatusUpdate", label: "Alter Equipment Status" },
       { to: "/notification", label: "Notification" },
       // { to: "/information", label: "Information" },
+      { to: "/myBookings", label: "My Booking" },
     ],
     5: [
       { to: "/ProfessorDashboard", label: "Guide Dashboard" },

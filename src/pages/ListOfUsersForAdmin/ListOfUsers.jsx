@@ -111,7 +111,7 @@ function ListOfUsers() {
   const paginationModel = { page: 0, pageSize: 10 };
 
   return (
-    <Paper sx={{ height: "90%", width: "50%", margin: "auto" }}>
+    <Paper sx={{ height: "90%", width: "910px", margin: "auto" }}>
       {/* Conditionally render the message for admin users */}
       {message && (
         <div style={{ color: "red", fontWeight: "bold", marginBottom: "10px" }}>
