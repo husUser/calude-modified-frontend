@@ -85,7 +85,7 @@ function ListOfUsers() {
     { field: "firstName", headerName: "First Name", width: 130 },
     { field: "lastName", headerName: "Last Name", width: 130 },
     { field: "email", headerName: "Email", width: 220 },
-    { field: "guideId", headerName: "Guide ID", width: 180 },
+    // { field: "guideId", headerName: "Guide ID", width: 180 },
     { field: "mobileNumber", headerName: "Mobile Number", width: 150 },
     {
       field: "action",
