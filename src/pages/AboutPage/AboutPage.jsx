@@ -236,8 +236,9 @@ const About = () => {
                 For instruments that allow only one sample per day, the first
                 row entry will be considered for that day. The same rule applies
                 for two- or three-sample-per-day and other day-specific
-                bookings. For more information, you can contact the respective
-                operator/caretaker of the machine
+                bookings. For more information, you can visit the information
+                page or you can contact the respective operator/caretaker of the
+                machine
               </span>
             </li>
             <li className="rule-item">
