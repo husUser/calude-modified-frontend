@@ -193,16 +193,16 @@ function AddProfessors() {
           >
             <h1 className="my-5 display-3 fw-bold ls-tight px-3 text-white">
               Add <br />
-              <span className="text-warning">Guide Profile</span>
+              <span className="text-warning">Faculty Profile</span>
             </h1>
             {/* <span>{error&&error.message}</span> */}
             <h5
               className="px-3"
               style={{ color: "#F5F5F5", textAlign: "justify" }}
             >
-              Please enter the guide's details in the designated space. Be sure
-              to double-check the information and refer to the example provided
-              in the label if needed. .{" "}
+              Please enter the Faculty's details in the designated space. Be
+              sure to double-check the information and refer to the example
+              provided in the label if needed. .{" "}
               <b style={{ color: "red" }}>no need to add Dr.</b> on first name
               as it will be automatically added, email must contain
               @ch.iitr.ac.in, first name and last name cant take space or
@@ -291,7 +291,7 @@ function AddProfessors() {
                         type="submit"
                         disabled={loading}
                       >
-                        {loading ? <BeatLoader /> : "Add guide Profile"}
+                        {loading ? <BeatLoader /> : "Add Faculty Profile"}
                       </MDBBtn>
                     </form>
                   </div>
@@ -304,7 +304,7 @@ function AddProfessors() {
           <h2
             className={`text-center text-decoration-underline m-4 ${classes.listTitle}`}
           >
-            List of guides
+            List of Faculty
           </h2>
 
           {professors?.length > 0 ? (
@@ -367,7 +367,7 @@ function AddProfessors() {
             </Paper>
           ) : (
             <h3 className="text-center text-white">
-              No guide Detail Added so far.
+              No Faculty Detail Added so far.
             </h3>
           )}
         </div>

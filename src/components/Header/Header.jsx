@@ -47,7 +47,7 @@ function DashboardHeader() {
     3: [
       { to: "/dashboard", label: "Home" },
       { to: "/addEquipments", label: "Add Equipment" },
-      { to: "/addProfessors", label: "Add Guide" },
+      { to: "/addProfessors", label: "Add Faculty" },
       { to: "/ListOfAllUsers", label: "All Users" },
       { to: "/userRoleUpdate", label: "Privilege" },
       // { to: "/deleteOldData", label: "Clean Old Data" },
@@ -60,7 +60,7 @@ function DashboardHeader() {
     4: [
       { to: "/dashboard", label: "Home" },
       { to: "/addEquipments", label: "Add Equipment" },
-      { to: "/addProfessors", label: "Add Guide" },
+      { to: "/addProfessors", label: "Add Faculty" },
       { to: "/ListOfAllUsers", label: "All Users" },
       { to: "/userRoleUpdate", label: "Privilege" },
       // { to: "/deleteOldData", label: "Clean Old Data" },
@@ -71,7 +71,7 @@ function DashboardHeader() {
       { to: "/myBookings", label: "My Booking" },
     ],
     5: [
-      { to: "/ProfessorDashboard", label: "Guide Dashboard" },
+      { to: "/ProfessorDashboard", label: "Faculty Dashboard" },
       // { to: "/information", label: "Information" },
     ],
   };

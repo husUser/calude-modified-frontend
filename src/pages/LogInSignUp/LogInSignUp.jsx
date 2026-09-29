@@ -205,7 +205,7 @@ function LogInSignUp() {
                   </div>
                   <div className="forgot mt-2">
                     <Link to="/ProfessorLogin">
-                      Click Here For Guide's LogIn
+                      Click Here For Faculty LogIn
                     </Link>
                   </div>
                 </form>
@@ -271,7 +271,7 @@ function LogInSignUp() {
                     required
                   >
                     <option value="" disabled>
-                      Select Guide
+                      Select Faculty
                     </option>
                     {professors.map((prof) => (
                       <option key={prof.professorId} value={prof.professorId}>

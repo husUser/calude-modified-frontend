@@ -35,7 +35,7 @@ const tutorialVideos = [
   },
   {
     id: "7qV6DK0lGYs",
-    title: "Guide Dashboard",
+    title: "Faculty Dashboard",
   },
   {
     id: "UHdl464SvPo",

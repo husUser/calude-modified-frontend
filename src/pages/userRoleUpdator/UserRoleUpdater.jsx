@@ -237,7 +237,7 @@ function UserRoleUpdater() {
                   <option value="1">Operator</option>
                   <option value="2">TA</option>
                   <option value="3">Admin</option>
-                  <option value="5">Guide</option>
+                  <option value="5">Faculty</option>
                 </select>
 
                 <MDBBtn
