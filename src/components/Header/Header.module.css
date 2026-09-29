@@ -9,6 +9,7 @@
   min-height: 64px;
   z-index: 1030;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12) !important;
+  font-size: 0.8rem;
 }
 
 .container {
@@ -28,7 +29,9 @@
   white-space: nowrap;
   padding: 0.45rem 0.75rem !important;
   border-radius: 8px;
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .brand:hover {
@@ -82,7 +85,7 @@
 
 .link:hover {
   color: #ffffff !important;
-  background-color: rgba(255, 255, 255, 0.10);
+  background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
 }
 
@@ -167,7 +170,7 @@
 }
 
 .navbarToggler:hover {
-  background-color: rgba(255, 255, 255, 0.10) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.85) !important;
 }
 
@@ -290,7 +293,7 @@
 
   .link:hover {
     transform: none;
-    background-color: rgba(255, 255, 255, 0.10);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   .userSection {

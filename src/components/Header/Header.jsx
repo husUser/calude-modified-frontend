@@ -56,6 +56,7 @@ function DashboardHeader() {
       { to: "/notification", label: "Notification" },
       // { to: "/information", label: "Information" },
       { to: "/myBookings", label: "My Booking" },
+      { to: "/generateReport", label: "Report" },
     ],
     4: [
       { to: "/dashboard", label: "Home" },
@@ -69,6 +70,7 @@ function DashboardHeader() {
       { to: "/notification", label: "Notification" },
       // { to: "/information", label: "Information" },
       { to: "/myBookings", label: "My Booking" },
+      { to: "/generateReport", label: "Report" },
     ],
     5: [
       { to: "/ProfessorDashboard", label: "Faculty Dashboard" },
