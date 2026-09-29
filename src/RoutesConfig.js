@@ -33,6 +33,7 @@ import ProfessorPasswordUpdator from "./pages/PasswordUpdator/ProfessorPasswordU
 import PasswordUpdater from "./pages/PasswordUpdator/PasswordUpdater.jsx";
 import Notification from "./pages/Notification/Notification.jsx";
 import Acknowledgement from "./pages/Acknowledgment/Acknowledgment.jsx";
+import GenerateReport from "./pages/GenerateReport/GenerateReport.jsx";
 
 const RoutesConfig = () => {
   return (
@@ -193,6 +194,14 @@ const RoutesConfig = () => {
           element={
             <Layout>
               <UserRoleUpdater />
+            </Layout>
+          }
+        />
+        <Route
+          path="/generateReport"
+          element={
+            <Layout showFooter={false}>
+              <GenerateReport />
             </Layout>
           }
         />

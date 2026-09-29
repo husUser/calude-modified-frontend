@@ -1,0 +1,60 @@
+.mainDash {
+  min-height: 100vh;
+}
+
+/* react-datepicker wraps its input in an inline-block div; make it fill the card */
+.pickerWrapper {
+  width: 100%;
+  display: block;
+}
+
+.fieldGroup {
+  margin-bottom: 1.5rem;
+}
+
+.fieldLabel {
+  font-weight: 700;
+  color: #0d1e4c;
+  margin-bottom: 0.4rem;
+}
+
+.formatHint {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 0.3rem;
+}
+
+/* "Generating report..." + FadeLoader */
+.loadingBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0 0.5rem;
+  color: #0d1e4c;
+}
+
+.loadingText {
+  margin-top: 1.4rem;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+.errorMessage {
+  color: #dc3545;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.infoMessage {
+  color: #8a5a00;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.deniedBox {
+  text-align: center;
+  padding: 6rem 1rem;
+}
