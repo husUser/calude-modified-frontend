@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FadeLoader } from "react-spinners";
 import {
   MDBBtn,
   MDBContainer,
@@ -34,8 +33,6 @@ function GenerateReport() {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [info, setInfo] = useState("");
 
   const isAllowed = REPORT_ROLES.includes(Number(auth?.userRole));
 
@@ -43,15 +40,12 @@ function GenerateReport() {
     e.preventDefault();
     if (loading) return;
 
-    setError("");
-    setInfo("");
-
     if (!fromDate || !toDate) {
-      setError("Please select both From Date and To Date.");
+      toast.error("Please select both From Date and To Date.");
       return;
     }
     if (fromDate > toDate) {
-      setError("From Date cannot be later than To Date.");
+      toast.error("From Date cannot be later than To Date.");
       return;
     }
 
@@ -64,7 +58,7 @@ function GenerateReport() {
 
       const records = response?.data?.records || [];
       if (records.length === 0) {
-        setInfo("No booking records found for the selected date range.");
+        toast.warning("No booking records found for the selected date range.");
         return;
       }
 
@@ -79,7 +73,7 @@ function GenerateReport() {
       doc.save(`Booking_Report_${toISO(fromDate)}_to_${toISO(toDate)}.pdf`);
       toast.success("Booking report generated.");
     } catch (err) {
-      setError(
+      toast.error(
         err?.response?.data?.message ||
           "Failed to generate the report. Please try again.",
       );
@@ -183,29 +177,19 @@ function GenerateReport() {
                     type="submit"
                     disabled={loading}
                   >
-                    Generate Report
+                    {loading ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Generating Report...
+                      </>
+                    ) : (
+                      "Generate Report"
+                    )}
                   </MDBBtn>
-
-                  {loading && (
-                    <div
-                      className={classes.loadingBox}
-                      role="status"
-                      aria-live="polite"
-                      data-testid="report-loading"
-                    >
-                      <FadeLoader color="#0d1e4c" />
-                      <p className={classes.loadingText}>
-                        Generating report...
-                      </p>
-                    </div>
-                  )}
-
-                  {error && (
-                    <p className={classes.errorMessage} role="alert">
-                      {error}
-                    </p>
-                  )}
-                  {info && <p className={classes.infoMessage}>{info}</p>}
                 </form>
               </MDBCardBody>
             </MDBCard>

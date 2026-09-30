@@ -8,6 +8,82 @@
   display: block;
 }
 
+/* ---- Bootstrap-compatible visual polish for the date picker popup ---- */
+/* Purely cosmetic: year/month/date selection behavior is unchanged. */
+
+.pickerWrapper :global(.react-datepicker-wrapper) {
+  width: 100%;
+  display: block;
+}
+
+/* Text input: align focus ring with Bootstrap's, using the app's brand color */
+.pickerWrapper :global(input.form-control:focus) {
+  border-color: #0d1e4c;
+  box-shadow: 0 0 0 0.25rem rgba(13, 30, 76, 0.25);
+}
+
+.pickerWrapper :global(.react-datepicker) {
+  font-family: inherit;
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.pickerWrapper :global(.react-datepicker__header) {
+  background-color: #0d1e4c;
+  border-bottom: none;
+  padding-top: 0.6rem;
+}
+
+.pickerWrapper :global(.react-datepicker__current-month),
+.pickerWrapper :global(.react-datepicker-time__header) {
+  color: #ffffff;
+}
+
+.pickerWrapper :global(.react-datepicker__day-name) {
+  color: #e5e9f2;
+  font-weight: 600;
+}
+
+/* Month/year dropdowns styled to resemble a Bootstrap form-select */
+.pickerWrapper :global(.react-datepicker__month-select),
+.pickerWrapper :global(.react-datepicker__year-select) {
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+  padding: 0.2rem 0.4rem;
+  margin: 0 0.2rem;
+}
+
+.pickerWrapper :global(.react-datepicker__day) {
+  border-radius: 0.375rem;
+}
+
+.pickerWrapper :global(.react-datepicker__day:hover) {
+  background-color: rgba(13, 30, 76, 0.12);
+}
+
+.pickerWrapper :global(.react-datepicker__day--selected),
+.pickerWrapper :global(.react-datepicker__day--keyboard-selected) {
+  background-color: #0d1e4c;
+  color: #ffffff;
+}
+
+.pickerWrapper :global(.react-datepicker__day--in-range),
+.pickerWrapper :global(.react-datepicker__day--in-selecting-range) {
+  background-color: rgba(13, 30, 76, 0.2);
+  color: #0d1e4c;
+}
+
+.pickerWrapper :global(.react-datepicker__navigation-icon::before) {
+  border-color: #ffffff;
+}
+
+.pickerWrapper :global(.react-datepicker__triangle::before),
+.pickerWrapper :global(.react-datepicker__triangle::after) {
+  border-bottom-color: #0d1e4c !important;
+}
+
 .fieldGroup {
   margin-bottom: 1.5rem;
 }
@@ -22,36 +98,6 @@
   font-size: 0.8rem;
   color: #6c757d;
   margin-top: 0.3rem;
-}
-
-/* "Generating report..." + FadeLoader */
-.loadingBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem 0 0.5rem;
-  color: #0d1e4c;
-}
-
-.loadingText {
-  margin-top: 1.4rem;
-  margin-bottom: 0;
-  font-weight: 700;
-}
-
-.errorMessage {
-  color: #dc3545;
-  font-weight: 700;
-  margin-top: 1rem;
-  margin-bottom: 0;
-}
-
-.infoMessage {
-  color: #8a5a00;
-  font-weight: 700;
-  margin-top: 1rem;
-  margin-bottom: 0;
 }
 
 .deniedBox {
