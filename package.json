@@ -1,5 +1,6 @@
 {
   "name": "mdb-react-template",
+  "home": ".",
   "version": "9.0.0",
   "description": "template for mdb-react-ui-kit",
   "private": true,
